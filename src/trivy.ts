@@ -8,8 +8,6 @@ export function scan(
   option: TrivyCmdOption
 ): string | undefined {
   const args = [
-    'image',
-    image,
     '--severity',
     option.severity,
     '--vuln-type',
@@ -32,11 +30,13 @@ export function scan(
     case 0:
       core.info(`Vulnerabilities were not found.
       Your maintenance looks good 👍`);
+      break;
     case 255:
       if (result.stdout && result.stdout.length > 0) {
         core.info('Vulnerabilities found !!!');
         return result.stdout;
       }
+      break;
     default:
       throw new Error(`Failed to execute Trivy command.
       exit code: ${result.status}
