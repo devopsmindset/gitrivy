@@ -9,6 +9,7 @@ export function scan(
 ): string | undefined {
   const args = [
     'image',
+    image,
     '--severity',
     option.severity,
     '--vuln-type',
